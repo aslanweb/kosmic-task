@@ -1,0 +1,152 @@
+.main_content {
+  padding: 32px;
+  min-height: calc(100vh - 233px);
+  @media (max-width: 600px) {
+    padding: 32px 13px 0 20px;
+    min-height: unset;
+  }
+}
+.auto_select_wrap {
+  max-width: 517px;
+  margin-bottom: 32px;
+  label {
+    color: #ffffff;
+    left: 10px;
+    top: 2px;
+    &.Mui-focused {
+      color: #ffffff;
+      left: 0;
+    }
+  }
+  .MuiInputBase-formControl {
+    height: 100%;
+    fieldset {
+      border-radius: 12px;
+      background: rgba(58, 57, 64, 0.30);
+      border-color: transparent !important;
+    }
+    &.Mui-focused {
+      fieldset {
+        border-color: #FF7DFF !important;
+      }
+    }
+  }
+  .MuiIconButton-sizeMedium {
+    svg {
+      width: 24px;
+      height: 24px;
+      path { color: #ffffff}
+    }
+  }
+}
+.MuiAutocomplete-popper {
+  .MuiAutocomplete-paper {
+    background: #26242d;
+    border-radius: 12px;
+    ul {
+      li {
+        font-size: 16px;
+        color: #ffffff;
+        padding: 9px 28px;
+        &.Mui-focused,&[aria-selected="true"] { background: rgba(255,125,255,0.1) !important;}
+      }
+    }
+  }
+}
+.MuiAutocomplete-noOptions { color: #ffffff !important;}
+.progressbar-wrap {
+  max-width: 381px;
+  padding: 14px 4px;
+  background: #09090D;
+  border-radius: 12px;
+  @media (max-width: 600px) {
+    padding: 3px 2px;
+  }
+  & > div {
+    padding: 0;
+    p{
+      white-space: nowrap;
+      font-size: 14px;
+      padding: 0 10px;
+    }
+    & > div {
+      &:nth-child(2) {
+        margin-bottom: -5px;
+        .MuiSlider-rail {
+          background: #3A3940;
+          height: 5px;
+        }
+        .MuiSlider-track {
+          background: linear-gradient(90deg, rgba(82,63,215,1) 0%, rgba(255,125,255,1) 100%);
+          border: none;
+          opacity: 0.5;
+          height: 5px;
+        }
+        .MuiSlider-thumb {
+          background: transparent;
+          width: 18px;
+          height: 18px;
+          box-shadow: none !important;
+          &:after {
+            transform: none;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: url("./assets/images/thumb.svg") center no-repeat;
+            background-size: contain;
+          }
+        }
+      }
+    }
+  }
+}
+button span {
+  background: linear-gradient(90deg, #523FD7 -20.19%, #FF7DFF 168.46%);
+  //background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+}
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6470DA;
+  border-radius: 10px;
+}
+.auto_select_wrap {
+  .MuiAutocomplete-hasClearIcon {
+    label { left: 0;}
+    .MuiInputBase-formControl {
+      fieldset {
+        border-color: #FF7DFF !important;
+      }
+    }
+  }
+}
+.MuiSlider-sizeMedium {
+  &:hover {
+    .MuiSlider-thumbSizeMedium {
+      &:before {opacity: 1;}
+    }
+  }
+}
+.edit_text {
+  input {
+    height: 25px;
+    padding: 0 10px 0;
+    border: 1px solid #FF7DFF;
+  }
+}
+.after_edit_text {
+  span {
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
