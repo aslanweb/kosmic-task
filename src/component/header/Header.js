@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {AppBar, Box, Grid, Link, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Grid, Toolbar, Typography} from "@mui/material";
 import profileImage from "../../assets/images/profile-image.png";
 import editImage from "../../assets/images/edit.svg";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
@@ -35,9 +35,35 @@ const MobileGrid = styled(Grid)(({ theme }) => ({
     }
 }));
 
+const ProfileImage = styled(Typography)(({ theme }) => ({
+    position: 'relative',
+    overflow: 'hidden',
+    '& input' : {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        opacity: '0',
+    }
+}));
+const ProfileImageMobile = styled(Grid)(({ theme }) => ({
+    position: 'relative',
+    overflow: 'hidden',
+    '& input' : {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        opacity: '0',
+        display: 'none',
+        [theme.breakpoints.down('sm')]: {
+            display: 'inherit'
+        }
+    }
+}));
+
 export default function Header() {
     const [isEditing, setIsEditing] = useState(false);
     const [textInput, setTextInput] = useState('Media management');
+    const [selectedImage, setSelectedImage] = useState(profileImage);
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -50,6 +76,18 @@ export default function Header() {
     const handleBlur = () => {
         setIsEditing(false);
     };
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setSelectedImage(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return(
         <CustomAppBar position="static">
             <CustomToolbar>
@@ -91,21 +129,31 @@ export default function Header() {
                         </Box>
                     </Grid>
                 </Grid>
-                <Grid spacing={2} alignItems="center" gap="12px" display="flex">
+                <ProfileImageMobile spacing={2} alignItems="center" gap="12px" display="flex">
                     <MobileGrid item textAlign="right">
                         <Box>
                             <Typography variant="h6" sx={{fontSize: '16px', lineHeight: '24px'}}>Jane Cooper</Typography>
-                            <Link sx={{color: '#FF7DFF', fontSize: '16px', fontWeight: '300', textDecorationColor: '#FF7DFF'}} href="javascript:void(0)" rel="noopener noreferrer">
+                            <ProfileImage sx={{color: '#FF7DFF', fontSize: '16px', fontWeight: '300', textDecoration: 'underline', cursor: 'pointer', textDecorationColor: '#FF7DFF'}} rel="noopener noreferrer">
                                 Change profile
-                            </Link>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileChange}
+                                />
+                            </ProfileImage>
                         </Box>
                     </MobileGrid>
                     <img
-                        src={profileImage}
+                        src={selectedImage}
                         alt="Placeholder"
                         style={{ width: '40px', height: '40px', borderRadius: '12px' }}
                     />
-                </Grid>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                    />
+                </ProfileImageMobile>
             </CustomToolbar>
         </CustomAppBar>
     )
