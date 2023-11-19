@@ -43,6 +43,7 @@ const ProfileImage = styled(Typography)(({ theme }) => ({
         top: '0',
         left: '0',
         opacity: '0',
+        display: 'block',
     }
 }));
 const ProfileImageMobile = styled(Grid)(({ theme }) => ({
